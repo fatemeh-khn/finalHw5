@@ -1,3 +1,5 @@
+package entites;
+
 import java.sql.Date;
 
 public class Article {
@@ -59,7 +61,7 @@ public class Article {
 
     @Override
     public String toString() {
-        return "Article{" +
+        return "entites.Article{" +
                 "title='" + title + '\'' +
                 ", brief='" + brief + '\'' +
                 ", content='" + content + '\'' +

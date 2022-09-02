@@ -1,3 +1,9 @@
+package view;
+
+import entites.User;
+import pository.ArticleRepo;
+import pository.UserRepo;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -15,8 +21,17 @@ public class Main {
         User user = new User();
 
         //get console
+        System.out.println("please enter username");
         user.setUsername(scanner.nextLine());
+//        System.out.println("please enter ID");
+//        user.setId(Integer.parseInt(scanner.nextLine()));
+
+        System.out.println("please enter password");
         user.setPassword(scanner.nextLine());
+        System.out.println("please enter NationalCode");
+        user.setNationalCode(scanner.nextLine());
+        System.out.println("please enter BIRTHDAY");
+        user.setBirthday(scanner.nextLine());
 
         // creat menu with jFrame
         JFrame frame = new JFrame("menu");
@@ -67,11 +82,14 @@ public class Main {
                 try {
                     userRepo.userInsert(user);
                 } catch (SQLException ex) {
-                    throw new RuntimeException(ex);
+
                 }
 
             }
         });
+
+
+
 
         jButton3.addActionListener(new ActionListener() {
             @Override
