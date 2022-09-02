@@ -8,6 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.Scanner;
 
@@ -21,17 +22,7 @@ public class Main {
         User user = new User();
 
         //get console
-        System.out.println("please enter username");
-        user.setUsername(scanner.nextLine());
-//        System.out.println("please enter ID");
-//        user.setId(Integer.parseInt(scanner.nextLine()));
 
-        System.out.println("please enter password");
-        user.setPassword(scanner.nextLine());
-        System.out.println("please enter NationalCode");
-        user.setNationalCode(scanner.nextLine());
-        System.out.println("please enter BIRTHDAY");
-        user.setBirthday(scanner.nextLine());
 
         // creat menu with jFrame
         JFrame frame = new JFrame("menu");
@@ -54,8 +45,10 @@ public class Main {
         jButton1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
-
+                System.out.println("please enter username");
+                user.setUsername(scanner.nextLine());
+                System.out.println("please enter password");
+                user.setPassword(scanner.nextLine());
                 try {
                     if (userRepo.findByUserName(user)) {
                         JButton jButton1 = new JButton("دیدن مقالها");
@@ -76,8 +69,17 @@ public class Main {
             }
         });
         jButton2.addActionListener(new ActionListener() {
+
             @Override
             public void actionPerformed(ActionEvent e) {
+                System.out.println("please enter username");
+                user.setUsername(scanner.nextLine());
+                System.out.println("please enter password");
+                user.setPassword(scanner.nextLine());
+                System.out.println("please enter NationalCode");
+                user.setNationalCode(scanner.nextLine());
+                System.out.println("please enter BIRTHDAY");
+                user.setBirthday(Date.valueOf(scanner.nextLine()));
 
                 try {
                     userRepo.userInsert(user);
@@ -87,10 +89,6 @@ public class Main {
 
             }
         });
-
-
-
-
         jButton3.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

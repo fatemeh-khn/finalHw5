@@ -9,13 +9,14 @@ import java.sql.SQLException;
 import java.util.Date;
 
 public class ArticleRepo {
-    public void createTable() throws SQLException {
-        Connection connection = MyConnection.getConnection();
-        String sql = "CREATE TABLE Article-tbl (id int,title varchar(25),brief varchar(25),content varchar(25),createDate varchar(25),isPublished varchar(25) )";
-        PreparedStatement preparedStatement = connection.prepareStatement(sql);
-        preparedStatement.executeUpdate();
-        connection.close();
-    }
+
+//    public void createTable() throws SQLException {
+//        Connection connection = MyConnection.getConnection();
+//        String sql = "CREATE TABLE Article-tbl (id int,title varchar(25),brief varchar(25),content varchar(25),createDate varchar(25),isPublished varchar(25) )";
+//        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+//        preparedStatement.executeUpdate();
+//        connection.close();
+//    }
 
     public void articleInsert(Article article) throws SQLException {
         Connection connection = MyConnection.getConnection();
@@ -55,7 +56,7 @@ public class ArticleRepo {
 
     public Article loadById(int id) throws SQLException {
         Connection connection = MyConnection.getConnection();
-        String sql = "Select * from UArticle-tbl where id=?";
+        String sql = "Select * from Article-tbl where id=?";
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setInt(1, id);
 

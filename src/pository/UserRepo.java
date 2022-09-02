@@ -2,10 +2,7 @@ package pository;
 
 import entites.User;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class UserRepo {
 
@@ -25,7 +22,7 @@ public class UserRepo {
         preparedStatement.setString(1, user.getUsername());
         preparedStatement.setString(2, user.getPassword());
         preparedStatement.setString(3, user.getNationalCode());
-        preparedStatement.setString(4, user.getBirthday());
+        preparedStatement.setDate(4, user.getBirthday());
         preparedStatement.executeUpdate();
 //        connection.close();
     }
@@ -54,7 +51,7 @@ public class UserRepo {
 
     public void update(String firstName, int id) throws SQLException {
         Connection connection = MyConnection.getConnection();
-        String sql = "UPDATE User-tbl SET firstName=? WHERE  id=?";
+        String sql = "UPDATE User-tbl SET username=? WHERE  id=?";
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setString(1, firstName);
         preparedStatement.setInt(2, id);
@@ -69,31 +66,31 @@ public class UserRepo {
         int i = preparedStatement.executeUpdate();
     }
 
-    public boolean contain(String email) throws SQLException {
-        Connection connection = MyConnection.getConnection();
-        String sql = "SELECT count(email)FROM User-tbl where email=?";
-        PreparedStatement preparedStatement = connection.prepareStatement(sql);
-        preparedStatement.setString(1, email);
-        ResultSet resultSet = preparedStatement.executeQuery();
-        while (resultSet.next()) {
-            return true;
-        }
-        return false;
-    }
+//    public boolean contain(String email) throws SQLException {
+//        Connection connection = MyConnection.getConnection();
+//        String sql = "SELECT count(email)FROM User-tbl where email=?";
+//        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+//        preparedStatement.setString(1, email);
+//        ResultSet resultSet = preparedStatement.executeQuery();
+//        while (resultSet.next()) {
+//            return true;
+//        }
+//        return false;
+//    }
 
     private User buildUser(ResultSet resultSet) throws SQLException {
         while (resultSet.next()) {
             User user = new User();
-            int id=resultSet.getInt("id");
+//            int id=resultSet.getInt("id");
             String username = resultSet.getString("username");
             String password = resultSet.getString("password");
             String nationalCode = resultSet.getString("nationalCode");
             String birthday = resultSet.getString("birthday");
-            user.setId(id);
+//            user.setId(id);
             user.setUsername(username);
             user.setPassword(password);
             user.setNationalCode(nationalCode);
-            user.setBirthday(birthday);
+            user.setBirthday(Date.valueOf(birthday));
             return user;
         }
         return null;

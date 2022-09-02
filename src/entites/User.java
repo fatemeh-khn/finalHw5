@@ -1,11 +1,13 @@
 package entites;
 
+import java.sql.Date;
+
 public class User {
     private int id;
     private String username;
     private String password;
     private String nationalCode;
-    private String birthday;
+    private Date birthday;
 
     public int getId() {
         return id;
@@ -40,11 +42,11 @@ public class User {
         this.nationalCode = nationalCode;
     }
 
-    public String getBirthday() {
+    public Date getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(String birthday) {
+    public void setBirthday(Date birthday) {
         this.birthday = birthday;
     }
 
